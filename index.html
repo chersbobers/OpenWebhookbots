@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pippy Bots</title>
+  <title>Cat Bots</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -23,10 +23,10 @@
     <h1 style="margin-bottom: 20px;">Send Message</h1>
     <input type="text" id="webhookUrl" placeholder="Enter Webhook URL" />
 
-    <div class="input-row">
+    <!--div class="input-row">
       <input type="text" id="username" placeholder="Username (optional)" />
       <input type="text" id="avatarUrl" placeholder="Avatar URL (optional)" />
-    </div>
+    </div> -->
 
     <textarea id="messageInput" class="message-box" rows="5" placeholder="Your message here..."></textarea>
     <button id="sendBtn">Send</button>
@@ -57,9 +57,11 @@
         return;
       }
 
-      const payload = { content: message };
-      if (username) payload.username = username;
-      if (avatar_url) payload.avatar_url = avatar_url;
+      const payload = {
+      content: message,
+      username: "CatBot",
+      avatar_url: "https://i.pinimg.com/564x/fe/6d/85/fe6d857f0b577b2064b9f7239a651da9.jpg"
+        };
 
       try {
         const response = await fetch(webhookURL, {
