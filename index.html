@@ -21,11 +21,7 @@
 <body>
   <div class="main">
     <h1 style="margin-bottom: 20px;">Send Message</h1>
-    <select id="channelSelect">
-      <option value="https://discord.com/api/webhooks/1372798063629959168/Ez2bPgWpoBcV1BXTtfhO67BDxARIK49N3Rykfl7qQm4YoNB49QRi1qAmuVh4HEKwmcOb">general</option>
-      <option value="https://discord.com/api/webhooks/1372820745188675634/2aNS8fMWh5VhAOAJJURC3z1380-7yHmam_mxcPfNxbCroCNpVjg20DAVJCUmi3I60uHJ">updates</option>
-      <option value="https://discord.com/api/webhooks/1372820921051512912/TME_20Q-Tajd4LKFgT7Pa0EgMzKjYnKk5-ytmTl9L5VWWLYPHz3ePSA3gC8ImlTc_ITI">announcements</option>
-    </select>
+    <input type="text" id="webhookUrl" placeholder="Enter Webhook URL" />
 
     <div class="input-row">
       <input type="text" id="username" placeholder="Username (optional)" />
@@ -40,16 +36,21 @@
   <script>
     const sendBtn = document.getElementById('sendBtn');
     const messageInput = document.getElementById('messageInput');
-    const channelSelect = document.getElementById('channelSelect');
+    const webhookInput = document.getElementById('webhookUrl');
     const status = document.getElementById('status');
     const usernameInput = document.getElementById('username');
     const avatarInput = document.getElementById('avatarUrl');
 
     sendBtn.addEventListener('click', async () => {
       const message = messageInput.value.trim();
-      const webhookURL = channelSelect.value;
+      const webhookURL = webhookInput.value.trim();
       const username = usernameInput.value.trim();
       const avatar_url = avatarInput.value.trim();
+
+      if (!webhookURL) {
+        status.textContent = 'Please enter a webhook URL.';
+        return;
+      }
 
       if (!message) {
         status.textContent = 'Please enter a message.';
